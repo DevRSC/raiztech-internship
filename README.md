@@ -29,7 +29,7 @@
 - Tailwind CSS
 - Rest Countries API
 
-##Getting Started
+## Getting Started
 
 To get started, you'll need to have Node.js and npm installed on your machine. Then, follow these steps:
 
@@ -39,21 +39,26 @@ To get started, you'll need to have Node.js and npm installed on your machine. T
 4. Run npm run dev to start the development server.
 5. Open your browser and navigate to http://localhost:3000.
 
-##Screenshots
+## Screenshots
 
-####Home Page
+#### Home Page
+
 ![homepage](https://i.imgur.com/JnaGhoK.png)
 
-####Search Results
+#### Search Results
+
 ![searchresults](https://i.imgur.com/iHznlde.png)
 
-####Filter by Region
+#### Filter by Region
+
 ![filterRegion](https://i.imgur.com/NDSWuSK.png)
 
-####Filter by Area
+#### Filter by Area
+
 ![filterByArea](https://i.imgur.com/8WP4LVC.png)
 
-####Pagination
+#### Pagination
+
 ![pagination](https://i.imgur.com/6wBREL0.png)
 
 ## Thoughts on the Assignment
