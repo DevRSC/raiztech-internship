@@ -1,4 +1,4 @@
-#REIZ TECH HOMEWORK ASSIGNMENT DOCUMENT FOR FRONTEND DEVELOPER INTERN POSITION
+# REIZ TECH HOMEWORK ASSIGNMENT DOCUMENT FOR FRONTEND DEVELOPER INTERN POSITION
 
 <p>Thank you for considering me for the Frontend Developer Intern position at REIZ TECH. This task was a great opportunity for me to showcase my skills and approach to objectives. I have implemented the task using React.js and TypeScript.
 </p>
