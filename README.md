@@ -41,23 +41,23 @@ To get started, you'll need to have Node.js and npm installed on your machine. T
 
 ## Screenshots
 
-#### Home Page
+### Home Page
 
 ![homepage](https://i.imgur.com/JnaGhoK.png)
 
-#### Search Results
+### Search Results
 
 ![searchresults](https://i.imgur.com/iHznlde.png)
 
-#### Filter by Region
+### Filter by Region
 
 ![filterRegion](https://i.imgur.com/NDSWuSK.png)
 
-#### Filter by Area
+### Filter by Area
 
 ![filterByArea](https://i.imgur.com/8WP4LVC.png)
 
-#### Pagination
+### Pagination
 
 ![pagination](https://i.imgur.com/6wBREL0.png)
 
