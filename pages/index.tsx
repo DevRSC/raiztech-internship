@@ -1,123 +1,192 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import { useEffect, useState } from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+import Navbar from "@/components/Navbar";
+import SearchFilter from "@/components/SearchFilter";
+import Table from "@/components/Table";
+import Pagination from "@/components/Pagination";
+import Dropdown from "@/components/Dropdown";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+interface Country {
+  index: number;
+  name: string;
+  region: string;
+  area: number;
+  independent: boolean;
+}
 
 export default function Home() {
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [filteredCountries, setFilteredCountries] = useState<Country[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [countriesPerPage] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(1);
+  const [sort, setSort] = useState<boolean>();
+
+  useEffect(() => {
+    setMaxPage(Math.ceil(filteredCountries.length / countriesPerPage));
+  }, [filteredCountries, countriesPerPage]);
+
+  // Fetch data from API
+
+  useEffect(() => {
+    fetch("https://restcountries.com/v2/all?fields=name,region,area")
+      .then((res) => res.json())
+      .then((data) => {
+        const formattedData = data.map((country: Country, index: number) => ({
+          index: index + 1,
+          name: country.name,
+          region: country.region,
+          area: country.area,
+          independent: country.independent ? "True" : "False",
+        }));
+        setCountries(formattedData);
+        setFilteredCountries(formattedData);
+      });
+  }, []);
+
+  // View all countries
+
+  const viewAllCountries = () => {
+    setFilteredCountries(countries);
+    setSearch("");
+    setCurrentPage(1);
+  };
+
+  //Search Filter
+
+  const filterData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = e.target.value.toLowerCase();
+    setSearch(searchTerm);
+
+    if (searchTerm === "") {
+      setFilteredCountries(countries);
+    } else {
+      const filteredData = countries.filter((country) =>
+        country.name.toLowerCase().includes(searchTerm)
+      );
+
+      setFilteredCountries(filteredData);
+      setCurrentPage(1); // Reset current page when search term changes
+    }
+  };
+
+  //Filter by area function
+
+  const filterByArea = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const searchedCountry = search.toLowerCase();
+
+    //if no search return
+    if (searchedCountry === "") {
+      return;
+    } else {
+      //searched country area if not found return the area of the first country
+      const searchedCountryArea =
+        countries.find(
+          (country) => country.name.toLowerCase() === searchedCountry
+        )?.area || filteredCountries[0].area;
+
+      //if no country is found, return
+      if (searchedCountryArea === undefined) {
+        return;
+      }
+
+      //filter countries that are smaller or equal to the searched country area
+      const filteredData = countries.filter(
+        (country) => country.area <= searchedCountryArea
+      );
+
+      //sort filtered countries by area biggest to smallest
+      const sortedData = filteredData.sort((a, b) => b.area - a.area);
+      setFilteredCountries(sortedData);
+
+      setCurrentPage(1);
+    }
+  };
+
+  // Pagination Logic
+  const indexOfLastCountry = currentPage * countriesPerPage;
+  const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+
+  const currentCountries =
+    filteredCountries.length > 0
+      ? filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry)
+      : countries.slice(indexOfFirstCountry, indexOfLastCountry);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(countries.length / countriesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  //Sort by name function
+  const sortByName = () => {
+    const sortedData = filteredCountries.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+
+    if (sort) {
+      setFilteredCountries(sortedData.reverse());
+      setSort(false);
+    } else {
+      setFilteredCountries(sortedData);
+      setSort(true);
+    }
+
+    setCurrentPage(1);
+  };
+
+  //a bit of prop drilling here
+
+  const getFilteredRegion = (region: string) => {
+    //filter countries by region
+    const filteredData = countries.filter(
+      (country) => country.region === region
+    );
+
+    setFilteredCountries(filteredData);
+
+    setCurrentPage(1);
+  };
+
   return (
     <>
       <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Country Visualizer</title>
+        <meta name='description' content='Generated by create next app' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/logo.png' />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
+      <main className=' min-h-screen dark:bg-gray-800'>
+        <section className='container px-4 mx-auto'>
+          <Navbar />
+          <SearchFilter
+            viewAll={viewAllCountries}
+            getFilteredRegion={getFilteredRegion}
+            search={search}
+            filterData={filterData}
+            filterButton={filterByArea}
           />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+          <Table countries={currentCountries} sortByName={sortByName} />
+          <Pagination
+            currentPage={currentPage}
+            maxPage={maxPage}
+            paginate={(pageNumber: number) => setCurrentPage(pageNumber)}
+          />
+        </section>
       </main>
     </>
-  )
+  );
 }
