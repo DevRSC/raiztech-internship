@@ -17,30 +17,30 @@ export default function TableListItem({
 }: TableProps) {
   return (
     <tr key={index}>
-      <td className='px-4 py-4 text-sm font-medium whitespace-nowrap'>
+      <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
         <div>
-          <h2 className='font-medium text-gray-800 dark:text-white '>
+          <h2 className="font-medium text-gray-800 dark:text-white ">
             {index}
           </h2>
         </div>
       </td>
-      <td className='px-12 py-4 text-sm font-medium whitespace-nowrap'>
-        <div className='inline px-3 py-1 text-sm font-normal rounded-full text-white gap-x-2 bg-emerald-300/60 dark:bg-gray-800'>
+      <td className="whitespace-nowrap px-12 py-4 text-sm font-medium">
+        <div className="inline gap-x-2 rounded-full bg-emerald-300/60 px-3 py-1 text-sm font-normal text-white dark:bg-gray-800">
           {name}
         </div>
       </td>
-      <td className='px-4 py-4 text-sm whitespace-nowrap'>
+      <td className="whitespace-nowrap px-4 py-4 text-sm">
         <div>
-          <h4 className='text-gray-700 dark:text-gray-200'>{region}</h4>
+          <h4 className="text-gray-700 dark:text-gray-200">{region}</h4>
         </div>
       </td>
-      <td className='px-4 py-4 text-sm whitespace-nowrap'>
+      <td className="whitespace-nowrap px-4 py-4 text-sm">
         <div>
-          <h4 className='text-gray-700 dark:text-gray-200'>{area}</h4>
+          <h4 className="text-gray-700 dark:text-gray-200">{area}</h4>
         </div>
       </td>
-      <td className='px-4 py-4 text-sm whitespace-nowrap'>
-        <p className='text-gray-500 dark:text-gray-400'>{independent}</p>
+      <td className="whitespace-nowrap px-4 py-4 text-sm">
+        <p className="text-gray-500 dark:text-gray-400">{independent}</p>
       </td>
     </tr>
   );
