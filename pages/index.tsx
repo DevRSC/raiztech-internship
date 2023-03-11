@@ -11,7 +11,6 @@ interface Country {
   name: string;
   region: string;
   area: number;
-  independent: boolean;
 }
 
 export async function getServerSideProps() {
@@ -24,7 +23,6 @@ export async function getServerSideProps() {
     name: country.name,
     region: country.region,
     area: country.area === undefined ? 0 : country.area,
-    independent: country.independent ? "True" : "False",
   }));
 
   return {
