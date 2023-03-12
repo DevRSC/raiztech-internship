@@ -9,6 +9,16 @@ interface Props {
   getFilteredRegion: (region: string) => void;
 }
 
+const regions = [
+  "Asia",
+  "Europe",
+  "Africa",
+  "Oceania",
+  "Americas",
+  "Polar",
+  "Antarctic Ocean",
+];
+
 export default function SearchFilter({
   search,
   viewAll,
@@ -36,7 +46,7 @@ export default function SearchFilter({
             Filter by smaller area
           </button>
 
-          <Dropdown getFilteredRegion={getFilteredRegion} />
+          <Dropdown getFilteredRegion={getFilteredRegion} regions={regions} />
         </div>
 
         <div className='relative mt-4 flex items-center md:mt-0'>
