@@ -29,7 +29,7 @@ export default function SearchFilter({
   return (
     <>
       <div className='mt-6 md:flex md:items-center md:justify-between'>
-        <div className=' divide-x rounded-lg border bg-white rtl:flex-row-reverse dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900'>
+        <div className='divide-x rounded-lg border bg-white rtl:flex-row-reverse dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900'>
           <button
             onClick={() => {
               viewAll();
@@ -45,7 +45,6 @@ export default function SearchFilter({
           >
             Filter by smaller area
           </button>
-
           <Dropdown getFilteredRegion={getFilteredRegion} regions={regions} />
         </div>
 
