@@ -1,11 +1,10 @@
 # REIZ TECH HOMEWORK ASSIGNMENT DOCUMENT FOR FRONTEND DEVELOPER INTERN POSITION
 
-<p>Thank you for considering me for the Frontend Developer Intern position at REIZ TECH. This task was a great opportunity for me to showcase my skills and approach to objectives. I have implemented the task using React.js and TypeScript.
-</p>
+Thank you for considering me for the Frontend Developer Intern position at **REIZ TECH**. This task was a great opportunity for me to showcase my skills and approach to objectives. I have implemented the task using React.js and TypeScript.
 
 ## Task Description
 
-<p>The task was to create a visualized representation of countries that displays country name, region, and area size using the https://restcountries.com free API. The data was fetched from https://restcountries.com/v2/all?fields=name,region,area. The following requirements were provided:</p>
+The task was to create a visualized representation of countries that displays country name, region, and area size using the https://restcountries.com free API. The data was fetched from https://restcountries.com/v2/all?fields=name,region,area. The following requirements were provided:
 
 - Create a repository using GIT and push your work to a remote (e.g., GitHub, Gitlab).
 - Display a list for the data.
@@ -43,27 +42,27 @@ To get started, you'll need to have Node.js and npm installed on your machine. T
 
 ### Home Page
 
-![homepage](https://i.imgur.com/JnaGhoK.png)
+![homepage](https://i.imgur.com/02zxyJL.png)
 
 ### Search Results
 
-![searchresults](https://i.imgur.com/iHznlde.png)
+![search](https://i.imgur.com/u7eZLI3.png)
 
 ### Filter by Region
 
-![filterRegion](https://i.imgur.com/NDSWuSK.png)
+![region](https://i.imgur.com/2xGK0gR.png)
 
 ### Filter by Area
 
-![filterByArea](https://i.imgur.com/8WP4LVC.png)
+![filter](https://i.imgur.com/qFDoJ0s.png)
 
 ### Pagination
 
-![pagination](https://i.imgur.com/6wBREL0.png)
+![pagination](https://i.imgur.com/xClmHzA.png)
 
 ## Thoughts on the Assignment
 
-<p>I must say, the assignment was a refreshing challenge that got me all excited. I had the chance to delve into some new concepts and apply them in a practical sense. The instructions were clear, which made grasping the requirements an absolute breeze. The additional points awarded for using TypeScript and implementing pagination were rather daunting I have faced multiple logic errors, but let me tell you, the sense of fulfillment when I nailed them was unparalleled. All in all, I'd say this project was a true testament to my capabilities as a frontend developer.
+<p>I must say, the assignment was a refreshing challenge that got me all excited. I had the chance to delve into some new concepts and apply them in a practical sense. The instructions were clear, which made grasping the requirements an absolute breeze. The additional points awarded for using TypeScript and implementing pagination were rather daunting at first. I have faced multiple logic errors, but let me tell you, the sense of fulfillment when I nailed them was unparalleled. All in all, I'd say this project was a true testament to my capabilities as a frontend developer.
 
 Now, I have to admit that my specialty is Mobile Development using React Native. However, I was still able to use my skills in React for this website. I did hit a few bumps in the road, so to speak. Bugs and logic errors, to be precise. But, as luck would have it, I was able to troubleshoot and resolve them all. It wasn't a easy, but I was able to complete the task on time.
 
